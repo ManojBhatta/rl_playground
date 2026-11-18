@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Local scratch / logs
+_archive/
+runs/

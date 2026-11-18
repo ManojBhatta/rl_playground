@@ -20,6 +20,8 @@ def value_iteration(env: GridWorld, discount_factor, theta=0.01):
     while True:
         delta = 0
         for s in range(nS):
+            v = V[s]
+
             xy = state_to_xy(s, env)
             if xy in env.forbidden_states or env._is_done(xy):
                 continue
@@ -28,9 +30,9 @@ def value_iteration(env: GridWorld, discount_factor, theta=0.01):
                 ns, r = env._get_next_state_and_reward(xy, a)
                 ns_idx = xy_to_state(ns, env)
                 q_values[i] = r + discount_factor * V[ns_idx]
-            max_q = np.max(q_values)
-            delta = max(delta, np.abs(max_q - V[s]))
-            V[s] = max_q
+
+            V[s] = np.max(q_values)
+            delta = max(delta, np.abs(v - V[s]))
         if delta < theta:
             break
 

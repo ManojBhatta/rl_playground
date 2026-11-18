@@ -3,7 +3,7 @@ from typing import List
 import numpy as np
 from pathlib import Path
 
-root = str(Path.cwd().parent)
+root = str(Path(__file__).resolve().parent.parent)
 if root not in sys.path:
     sys.path.append(root)
 from lib.smallgrid.grid_world import GridWorld
@@ -11,7 +11,7 @@ from lib.smallgrid.utils import state_to_xy, xy_to_state
 
 
 def evaluate_policy(
-    policy: np.ndarray, env: GridWorld, discount_factor: float = 1.0, theta: float = 0.1
+    policy: np.ndarray, env: GridWorld, discount_factor: float = 1.0, theta: float = 0.01
 ) -> List:
     V = np.zeros(env.num_states)
     i = 0
@@ -36,10 +36,6 @@ def evaluate_policy(
                     v += action_prob * (reward + discount_factor * V[next_idx])
             delta = max(delta, abs(v - V[s]))
             V[s] = v
-        break
-        i += 1
-        if i > 2:
-            break
         if delta < theta:
             break
     return V

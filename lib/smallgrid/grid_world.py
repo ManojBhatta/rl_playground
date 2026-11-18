@@ -39,9 +39,14 @@ class GridWorld():
         self.value_artists = []
 
 
-    def reset(self):
-        self.agent_state = self.start_state
-        self.traj = [self.agent_state] 
+    def reset(self, new_start_state = None):
+        # here we are assuming the new state passed will be a valid one
+        if new_start_state is not None:
+            self.agent_state = new_start_state
+            self.traj = [self.agent_state] 
+        else:
+            self.agent_state = self.start_state
+            self.traj = [self.agent_state] 
         return self.agent_state, {}
 
 
@@ -88,7 +93,7 @@ class GridWorld():
             x, y = new_state
             reward = self.reward_step
             
-        return (x, y), reward
+        return (int(x), int(y)), reward
         
 
     def _is_done(self, state):
@@ -147,6 +152,9 @@ class GridWorld():
         for state, state_action_group in enumerate(policy_matrix):
             x = state % self.env_size[0]
             y = state // self.env_size[0]
+
+            if (x,y) == self.target_state:
+                continue
 
             for i, action_probability in enumerate(state_action_group):
                 if action_probability != 0:

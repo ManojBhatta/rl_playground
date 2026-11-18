@@ -25,7 +25,7 @@ parser.add_argument("--forbidden-states", type=list, default=[ (2, 1), (3, 2), (
 parser.add_argument("--reward-target", type=float, default = 0)
 
 # sepcify the reward when entering into forbidden area
-parser.add_argument("--reward-forbidden", type=float, default = -3)
+parser.add_argument("--reward-forbidden", type=float, default = -1)
 
 # sepcify the reward for each step
 parser.add_argument("--reward-step", type=float, default = -1)
@@ -33,7 +33,7 @@ parser.add_argument("--reward-step", type=float, default = -1)
 
 
 ## ==================== Advanced Settings ====================
-parser.add_argument("--action-space", type=list, default=[(0, 1), (1, 0), (0, -1), (-1, 0), (0, 0)] )  # down, right, up, left, stay           
+parser.add_argument("--action-space", type=list, default=[(0, 1), (1, 0), (0, -1), (-1, 0)] )  # down, right, up, left, stay           
 parser.add_argument("--debug", type=bool, default=False)
 parser.add_argument("--animation-interval", type=float, default = 0.2)
 ## ==================== End of Advanced settings ====================

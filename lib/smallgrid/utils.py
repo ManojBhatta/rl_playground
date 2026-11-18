@@ -10,3 +10,4 @@ def xy_to_state(state:Tuple[int], env:GridWorld) -> int:
     x, y = state
     s  = y * env.env_size[0] + x
     return s
+

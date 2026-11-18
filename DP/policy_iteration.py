@@ -39,7 +39,7 @@ def improve_policy(policy,env:GridWorld, V, discount_factor):
             
 
 def main():
-    env = GridWorld(env_size=((7, 7)), start_state=(3, 3), target_state=(3, 3), forbidden_states=[])
+    env = GridWorld(env_size=((5, 5)), start_state=(0, 0), target_state=(3, 3))
     state = env.reset()
     env.render()
     policy_mat = np.ones((env.num_states, len(env.action_space))) / len(
